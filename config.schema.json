@@ -1,6 +1,7 @@
 {
   "pluginAlias": "Cosa",
   "pluginType": "platform",
+  "singular": true,
   "schema": {
     "type": "object",
     "properties": {
