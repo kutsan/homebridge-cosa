@@ -24,7 +24,7 @@
     "format": "prettier --ignore-path .gitignore --write --list-different .",
     "lint": "npm run lint:eslint && npm run lint:typescript && npm run lint:prettier",
     "lint:eslint": "eslint --ignore-path .gitignore --ext .js,.ts .",
-    "lint:prettier": "prettier --check .",
+    "lint:prettier": "prettier --ignore-path .gitignore --check .",
     "lint:typescript": "tsc --noEmit",
     "prepare": "is-ci || husky install",
     "prepublishOnly": "npm run build"
