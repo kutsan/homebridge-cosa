@@ -17,7 +17,7 @@
     "dist"
   ],
   "scripts": {
-    "prebuild": "#npm run lint",
+    "prebuild": "npm run lint",
     "build": "rimraf ./dist && tsc",
     "dev": "npm run build && npm link && nodemon",
     "format": "prettier --ignore-path .gitignore --write --list-different .",
