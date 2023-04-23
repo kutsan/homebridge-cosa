@@ -81,11 +81,11 @@ export class Thermostat {
       .setCharacteristic(hap.Characteristic.Manufacturer, 'Cosa')
       .setCharacteristic(hap.Characteristic.Model, 'v4')
 
-    log.info('Switch finished initializing!')
+    log.info('Thermostat finished initializing!')
   }
 
   identify(): void {
-    this.log('Identify!')
+    this.log('Identified.')
   }
 
   getServices(): Service[] {

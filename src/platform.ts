@@ -29,10 +29,6 @@ export class CosaPlatform implements StaticPlatformPlugin {
 
     // probably parse config or something here
     log.info('Cosa platform finished initializing!')
-
-    this.api.on('didFinishLaunching', () => {
-      log.info('A DID FINISH LANCUING')
-    })
   }
 
   /*
@@ -54,7 +50,7 @@ export class CosaPlatform implements StaticPlatformPlugin {
     })
 
     if (!loggedIn) {
-      this.log.error('Unable to login')
+      this.log.error('Unable to login.')
       return
     }
 
@@ -67,7 +63,7 @@ export class CosaPlatform implements StaticPlatformPlugin {
 
     this.homeId = homeList[0].id
 
-    this.log.info(`Logged in ${this.homeId}`)
+    this.log.info(`Logged in ${this.homeId}.`)
 
     const thermostat = new Thermostat({
       hap: this.api.hap,
