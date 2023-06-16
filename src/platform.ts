@@ -20,8 +20,6 @@ export class CosaPlatform implements StaticPlatformPlugin {
   private readonly config: CosaPlatformConfigType
   private readonly api: API
 
-  private homeId: string | null = null
-
   constructor(log: Logging, config: CosaPlatformConfigType, api: API) {
     this.log = log
     this.config = config
@@ -56,21 +54,22 @@ export class CosaPlatform implements StaticPlatformPlugin {
 
     const homeList = await getHomeList()
 
-    if (homeList[0] === undefined) {
+    if (homeList.length === 0) {
       this.log.error('Home is not available to register the thermostat.')
       return
     }
 
-    this.homeId = homeList[0].id
+    const devices = homeList.map((home) => {
+      this.log.info(`Created device with name "${home.name}".`)
 
-    this.log.info(`Logged in ${this.homeId}.`)
-
-    const thermostat = new Thermostat({
-      hap: this.api.hap,
-      log: this.log,
-      homeId: this.homeId
+      return new Thermostat({
+        hap: this.api.hap,
+        log: this.log,
+        id: home.id,
+        name: home.name
+      })
     })
 
-    register([thermostat])
+    register(devices)
   }
 }

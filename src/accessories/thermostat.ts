@@ -16,21 +16,23 @@ export class Thermostat {
   private readonly informationService: Service
   private readonly hap: HAP
 
-  private readonly homeId: string
+  private readonly id: string
 
   constructor({
     hap,
     log,
-    homeId
+    id,
+    name
   }: {
     hap: HAP
     log: Logging
-    homeId: string
+    id: string
+    name: string
   }) {
-    this.name = 'Cosa Thermostat'
+    this.name = name
     this.log = log
     this.hap = hap
-    this.homeId = homeId
+    this.id = id
 
     this.thermostatService = new hap.Service.Thermostat(this.name)
 
@@ -101,7 +103,7 @@ export class Thermostat {
     const { OFF, HEAT } = this.hap.Characteristic.CurrentHeatingCoolingState
 
     const isHeating = await getCurrentHeatingState({
-      homeId: this.homeId
+      homeId: this.id
     })
 
     const currentValue = isHeating ? HEAT : OFF
@@ -120,7 +122,7 @@ export class Thermostat {
     const { OFF, AUTO } = this.hap.Characteristic.TargetHeatingCoolingState
 
     const isHeating = await getCurrentHeatingState({
-      homeId: this.homeId
+      homeId: this.id
     })
 
     const currentValue = isHeating ? AUTO : OFF
@@ -145,7 +147,7 @@ export class Thermostat {
     this.log.debug('Setting target heating state to', states[value])
 
     await setTargetHeatingState({
-      homeId: this.homeId,
+      homeId: this.id,
       targetState: states[value]
     })
   }
@@ -157,7 +159,7 @@ export class Thermostat {
     this.log.debug('Triggered GET CurrentTemperature')
 
     const currentValue = await getCurrentTemperature({
-      homeId: this.homeId
+      homeId: this.id
     })
     this.log.debug('Current value is', currentValue)
 
@@ -171,7 +173,7 @@ export class Thermostat {
     this.log.debug('Triggered GET TargetTemperature')
 
     const currentValue = await getTargetTemperature({
-      homeId: this.homeId
+      homeId: this.id
     })
     this.log.debug('Target temperature is', currentValue)
 
@@ -187,7 +189,7 @@ export class Thermostat {
     this.log.debug('Setting target temperature to', value)
 
     await setTargetTemperature({
-      homeId: this.homeId,
+      homeId: this.id,
       targetTemperature: value
     })
   }
