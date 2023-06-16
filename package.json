@@ -1,7 +1,7 @@
 {
   "name": "homebridge-cosa",
   "displayName": "Cosa",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Homebridge plugin for Cosa Smart Thermostat",
   "keywords": [
     "homebridge-plugin"
