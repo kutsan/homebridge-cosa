@@ -13,7 +13,8 @@ const HomeResponseSchema = z.object({
 
 const HomeListSchema = z.array(
   z.object({
-    id: z.string()
+    id: z.string(),
+    name: z.string()
   })
 )
 
