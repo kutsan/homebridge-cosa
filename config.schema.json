@@ -18,5 +18,13 @@
         "description": "The password to log in to Cosa."
       }
     }
+  },
+  "uiSchema": {
+    "email": {
+      "ui:widget": "email"
+    },
+    "password": {
+      "ui:widget": "password"
+    }
   }
 }
