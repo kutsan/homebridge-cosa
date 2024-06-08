@@ -48,14 +48,20 @@ export class CosaPlatform implements StaticPlatformPlugin {
     })
 
     if (!loggedIn) {
-      this.log.error('Unable to login.')
+      this.log.error('Unable to login. Check your email and password.')
+
+      register([])
       return
     }
 
     const homeList = await getHomeList()
 
     if (homeList.length === 0) {
-      this.log.error('Home is not available to register the thermostat.')
+      this.log.error(
+        'A home in Cosa is not available to register the thermostat.'
+      )
+
+      register([])
       return
     }
 
